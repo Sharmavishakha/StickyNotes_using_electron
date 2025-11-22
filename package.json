@@ -1,12 +1,15 @@
 {
   "name": "sticky-notes-app",
   "version": "0.1.0",
+  "main": "electron/electron-main.js",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "eslint"
+    "lint": "eslint",
+    "electron": "concurrently -k \"npm run dev\" \"npm run electron:start\"",
+    "electron:start": "wait-on http://localhost:3000 && electron ."
   },
   "dependencies": {
     "next": "16.0.3",
@@ -18,9 +21,12 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "concurrently": "^9.2.1",
+    "electron": "^39.2.3",
     "eslint": "^9",
     "eslint-config-next": "16.0.3",
     "tailwindcss": "^4",
-    "typescript": "^5"
+    "typescript": "^5",
+    "wait-on": "^9.0.3"
   }
 }
